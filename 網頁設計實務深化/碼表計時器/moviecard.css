@@ -1,0 +1,49 @@
+/* *{
+    margin:0;
+    padding:0;
+}
+
+.container{  padding-top: 20px;
+    padding-bottom: 20px;} */
+
+/* .background-img{
+    background-image: url("https://3.bp.blogspot.com/-piZWCW2uUbg/W2fPXxkWZgI/AAAAAAAAOu0/eydmMjTIqcwLMHEEr2H7imqoRTxMw4o9QCLcBGAs/s1600/among_trees_night_dribbble.png");
+    height: 400px;
+    width: 800px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 5% auto;
+    padding:20px;
+    border: 1px solid #2a3cad;
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px #2a3cad;
+    position: relative;
+}*/
+
+.box{
+    width: auto;
+    height: calc(20vh + 20px);
+    background: #111845a6;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgb(23, 32, 90);
+    border: 2px solid #2a3cad;
+    color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.box:before{
+    content: '';
+
+    background: rgba(255,255,255,0.1);
+    transition:0.5s;
+    pointer-events: none;
+}
+
+
+.content{
+    color:white;
+}
+.box .content{
+    color: white;
+}
