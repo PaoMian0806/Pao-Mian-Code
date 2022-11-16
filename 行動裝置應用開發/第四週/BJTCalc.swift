@@ -5,11 +5,11 @@
 //  Created by user on 2022/11/2.
 //  Copyright © 2022 rain. All rights reserved.
 //
- 
+
 import UIKit
- 
+
 class ViewController: UIViewController {
- 
+
     
     
     @IBOutlet weak var r1Value: UILabel!
@@ -27,19 +27,20 @@ class ViewController: UIViewController {
     @IBAction func r1Changed(_ sender: Any) {
         r1Value.text = String(format: "%.1fk", r1Slider.value)
         
-        let beta = 99.0
-        let veb = 0.7
         
-        let r1 = r1Slider.value
-        let r2 = r2Slider.value
-        let rc = rcSlider.value
-        let re = reSlider.value
         
-        let rbb = (r1 * r2) / (r1 + r2)
-        let vbb = (12.0) * ((r2) / (r1 + r2))
-        let ib:Double = (vbb - veb) / (rbb + ((1 + beta) * re))
-        let ic:Double = (vbb - veb) / ((rbb / beta) + re)
-        let vec = (12.0) - ((beta * ib) * rc) - (((1 + beta) * ib) * re)
+        let r1 = Double(r1Slider.value)
+        let r2 = Double(r2Slider.value)
+        let rc = Double(rcSlider.value)
+        let re = Double(reSlider.value)
+        
+        let r11 = Double(r1 + r2)
+        let rbb = Double((r1 * r2) / r11)
+        let r12 = Double(re * 100.0)
+        let vbb = Double(12.0 * (r2 / r11) - 0.7)
+        let ib = Double(vbb / (rbb + r12))
+        let ic = Double(ib * 99.0)
+        let vec = Double(12.0 - (ic * rc) - (ib * r12))
         
         if vec <= (-12.0) {
             vecValue.text = String(format: "-12.0 V")
@@ -60,18 +61,20 @@ class ViewController: UIViewController {
     @IBAction func r2Changed(_ sender: Any) {
         r2Value.text = String(format: "%.1fk", r2Slider.value)
         
-        let beta = 99.0
-        let veb = 0.7
-        let r1 = r1Slider.value
-        let r2 = r2Slider.value
-        let rc = rcSlider.value
-        let re = reSlider.value
         
-        let rbb = (r1 * r2) / (r1 + r2)
-        let vbb = (12.0) * ((r2) / (r1 + r2))
-        let ib:Double = (vbb - veb) / (rbb + ((1 + beta) * re))
-        let ic:Double = (vbb - veb) / ((rbb / beta) + re)
-        let vec = (12.0) - ((beta * ib) * rc) - (((1 + beta) * ib) * re)
+        
+        let r1 = Double(r1Slider.value)
+        let r2 = Double(r2Slider.value)
+        let rc = Double(rcSlider.value)
+        let re = Double(reSlider.value)
+        
+        let r11 = Double(r1 + r2)
+        let rbb = Double((r1 * r2) / r11)
+        let r12 = Double(re * 100.0)
+        let vbb = Double(12.0 * (r2 / r11) - 0.7)
+        let ib = Double(vbb / (rbb + r12))
+        let ic = Double(ib * 99.0)
+        let vec = Double(12.0 - (ic * rc) - (ib * r12))
         
         if vec <= (-12.0) {
             vecValue.text = String(format: "-12.0 V")
@@ -86,18 +89,20 @@ class ViewController: UIViewController {
     @IBAction func rcChanged(_ sender: Any) {
         rcValue.text = String(format: "%.1fk", rcSlider.value)
         
-        let beta = 99.0
-        let veb = 0.7
-        let r1 = r1Slider.value
-        let r2 = r2Slider.value
-        let rc = rcSlider.value
-        let re = reSlider.value
         
-        let rbb = (r1 * r2) / (r1 + r2)
-        let vbb = (12.0) * ((r2) / (r1 + r2))
-        let ib:Double = (vbb - veb) / (rbb + ((1 + beta) * re))
-        let ic:Double = (vbb - veb) / ((rbb / beta) + re)
-        let vec = (12.0) - ((beta * ib) * rc) - (((1 + beta) * ib) * re)
+        
+        let r1 = Double(r1Slider.value)
+        let r2 = Double(r2Slider.value)
+        let rc = Double(rcSlider.value)
+        let re = Double(reSlider.value)
+        
+        let r11 = Double(r1 + r2)
+        let rbb = Double((r1 * r2) / r11)
+        let r12 = Double(re * 100.0)
+        let vbb = Double(12.0 * (r2 / r11) - 0.7)
+        let ib = Double(vbb / (rbb + r12))
+        let ic = Double(ib * 99.0)
+        let vec = Double(12.0 - (ic * rc) - (ib * r12))
         
         if vec <= (-12.0) {
             vecValue.text = String(format: "-12.0 V")
@@ -112,18 +117,20 @@ class ViewController: UIViewController {
     @IBAction func reChanged(_ sender: Any) {
         reValue.text = String(format: "%.1fk", reSlider.value)
         
-        let beta = 99.0
-        let veb = 0.7
-        let r1 = r1Slider.value
-        let r2 = r2Slider.value
-        let rc = rcSlider.value
-        let re = reSlider.value
         
-        let rbb = (r1 * r2) / (r1 + r2)
-        let vbb = (12.0) * ((r2) / (r1 + r2))
-        let ib:Double = (vbb - veb) / (rbb + ((1 + beta) * re))
-        let ic:Double = (vbb - veb) / ((rbb / beta) + re)
-        let vec = (12.0) - ((beta * ib) * rc) - (((1 + beta) * ib) * re)
+        
+        let r1 = Double(r1Slider.value)
+        let r2 = Double(r2Slider.value)
+        let rc = Double(rcSlider.value)
+        let re = Double(reSlider.value)
+        
+        let r11 = Double(r1 + r2)
+        let rbb = Double((r1 * r2) / r11)
+        let r12 = Double(re * 100.0)
+        let vbb = Double(12.0 * (r2 / r11) - 0.7)
+        let ib = Double(vbb / (rbb + r12))
+        let ic = Double(ib * 99.0)
+        let vec = Double(12.0 - (ic * rc) - (ib * r12))
         
         if vec <= (-12.0) {
             vecValue.text = String(format: "-12.0 V")
@@ -147,3 +154,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+
+
+}
+
