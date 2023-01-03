@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+        <title>Cover Template for Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/cover.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <h3 class="masthead-brand">網頁設計實務深化</h3>
+            <nav class="nav nav-masthead justify-content-center">
+                <a class="nav-link active" href="stopwatch.html">碼表</a>
+                <a class="nav-link" href="countdown.html">倒數計時器</a>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading"><span>00:00:00</span><span class="fs-5">.000</span></h1>
+        <p class="lead">
+            <a class="btn btn-lg btn-secondary">開始</a>
+            <a class="btn btn-lg btn-secondary">單圈計時</a>
+        </p>
+        <table class="table">
+            <thead style="background-color: white;">
+                <tr><th>間段</th><th>間段時間</th><th>總時間</th></tr>
+            </thead>
+            <tbody style="color: white;">
+            </tbody>
+        </table>
+    </main>
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        </div>
+    </footer>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="./Cover Template for Bootstrap_files/popper.min.js"></script>
+<script src="js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    function ps0(value, num) {
+        return value.toString().padStart(num,'0');
+    }
+
+    function formatTime(time) {
+        return ps0(parseInt((time) / 1000 / 60 / 60), 2) +
+            ":" + ps0(parseInt((time) / 1000 / 60), 2) +
+            ":" + ps0(parseInt((time) / 1000 % 60), 2);
+    }
+
+    var total = 0;
+    var start = 0;
+    var lap = 0;
+    var intervalID = 0;
+    $(".btn:first").click(function() {
+        if ($(".btn:first").text() == "開始") {
+            start = new Date().getTime();
+            lap = start;
+            $(".btn:first").text("暫停");
+            $(".btn:last").text("單圈計時");
+
+            intervalID = setInterval(function() {
+                var current = total + new Date().getTime();
+                $("h1>span:last").text("." + ps0((current - start) % 1000, 3));
+                $("h1>span:first").text(formatTime(current - start));
+            }, 10);
+        }
+        else { // 暫停
+            clearInterval(intervalID);
+            total += new Date().getTime() - start;
+            $(".btn:first").text("開始");
+            $(".btn:last").text("重設");
+        }
+    });
+
+    $(".btn:last").click(function() {
+        if ($(".btn:last").text() == "重設") {
+            $("h1>span:first").text("00:00:00");
+            $("h1>span:last").text(".000");
+            total = 0;
+            $("tbody").empty();
+        }
+        else { // 單圈計時
+            var current = new Date().getTime();
+            $("tbody").prepend("<tr><td> #" + ($("tbody").children("tr").length + 1) + "</td><td>"
+                + formatTime(current - lap)
+                + "." + ps0((current - lap) % 1000, 3) + "</td><td>"
+                + formatTime(total + current - start)
+                + "." + ps0((total + current - start) % 1000, 3) + "</td></tr>")
+            lap = current;
+        }
+    });
+</script>
+
+</body></html>
